@@ -41,10 +41,10 @@ def test_should_work_when_directory_exists(create_file: callable) -> None:
 def test_should_create_multiple_directories(create_file: callable) -> None:
     move_file(f"mv file.txt first_dir/second_dir/file2.txt")
 
-    with open("first_dir/second_dir/file2.txt", "r") as file_with_content:
-        assert file_with_content.read() == "This is some\n content for\n the file."
-
     assert os.path.exists("first_dir/second_dir/file2.txt") is True
     assert os.path.exists("file.txt") is False
+
+    with open("first_dir/second_dir/file2.txt", "r") as file_with_content:
+        assert file_with_content.read() == "This is some\n content for\n the file."
 
     shutil.rmtree("first_dir")
