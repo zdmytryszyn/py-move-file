@@ -51,7 +51,7 @@ def test_should_create_multiple_directories(create_file: callable) -> None:
 
 
 def test_should_create_multiple_directories_when_they_exist(create_file: callable) -> None:
-    os.makedirs("first_dir/second_dir/third_dir")
+    os.makedirs("first_dir/second_dir")
     move_file(f"mv file.txt first_dir/second_dir/third_dir/file2.txt")
 
     with open("first_dir/second_dir/third_dir/file2.txt", "r") as file_with_content:
