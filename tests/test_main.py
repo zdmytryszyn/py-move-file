@@ -48,3 +48,15 @@ def test_should_create_multiple_directories(create_file: callable) -> None:
         assert file_with_content.read() == "This is some\n content for\n the file."
 
     shutil.rmtree("first_dir")
+
+
+def test_should_create_multiple_directories_when_they_exist(create_file: callable) -> None:
+    os.makedirs("first_dir/second_dir/third_dir")
+    move_file(f"mv file.txt first_dir/second_dir/third_dir/file2.txt")
+
+    with open("first_dir/second_dir/third_dir/file2.txt", "r") as file_with_content:
+        assert file_with_content.read() == "This is some\n content for\n the file."
+
+    assert os.path.exists("file.txt") is False
+
+    shutil.rmtree("first_dir")
